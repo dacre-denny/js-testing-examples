@@ -15,7 +15,24 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceFolder}/test/example-5-spy.js"
+                "${workspaceFolder}/test/example-4-stub.js"
+            ],
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mocha Tests Component",
+            "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+            "args": [
+                "-u",
+                "tdd",
+                "--timeout",
+                "999999",
+                "--colors",
+                "-w",
+                "test/helpers/browser.js",
+                "${workspaceFolder}/test/example-7-component.js"
             ],
             "internalConsoleOptions": "openOnSessionStart"
         },

@@ -1,37 +1,33 @@
 /*
-Mock internal functions
+Mock UI component
 */
 
-var chai = require("chai");
-var chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
+import React from 'react';
+import { shallow, configure } from 'enzyme';
+import {expect, assert} from 'chai';
+import Adapter from 'enzyme-adapter-react-16';
 
-var assert = chai.assert;
+configure({ adapter: new Adapter() });
 
-// bring in sinon for function mocking
-var sinon = require("sinon");
+import Avatar from '../src/components/avatar.jsx';
 
-var fetch = require('../src/fetch')
+describe('<Avatar/>', function () {
 
-// create a spy that wraps our fetchStock method
-sinon.spy(fetch, 'fetchStock')
+  it('should have avatar class applied to the component', function () {
 
-var StockService = require('../src/stocks')
+    const wrapper = shallow(<Avatar/>);
+    assert.isTrue(wrapper.at(0).hasClass('avatar'))
+  });
 
-describe("StockService", function() {
-  describe("#getStockLatestPrice()", function() {
-    
-    this.timeout(15000)
+  it('should have an image to display the gravatar', function () {
 
-    it("should throw an exception when no argument passed", async function() {
-       
-      await assert.eventually.isDefined(StockService.getStockLatestPriceDifferences('fb', 'tsla'))
-      
-      // spys allow us to query how it has been used
-      assert.equal(fetch.fetchStock.callCount, 2)
-      
-      // spys allow us to check that the method was called as expected
-      assert.isTrue(fetch.fetchStock.calledWith(sinon.match.string))
-    });
+    const wrapper = shallow(<Avatar/>);
+    expect(wrapper.find('img')).to.have.length(1);
+  });
+
+  it('should render the correct email address', function () {
+
+    const wrapper = shallow(<Avatar email='hello@company.com'/>);
+    assert.equal(wrapper.find('em').text(), 'hello@company.com')
   });
 });

@@ -10,6 +10,7 @@ describe("Date", function() {
 
   // Describe the module's method that we're testing
   describe("#now()", function() {
+    
     it("should always return defined value", function() {
       assert.isDefined(Date.now());
     });
@@ -28,3 +29,25 @@ describe("Date", function() {
     });
   });
 });
+
+/*
+    // called before all tests in #now() block
+    before(function() {
+      console.log('#now() block starting')
+    })
+
+    // called after all tests in #now() block
+    after(function() {
+      console.log('#now() block done')
+    })
+
+    // called after all tests in #now() block
+    beforeEach(function() {
+      console.log('Before test done')
+    })
+
+    // called after each test in #now() block
+    afterEach(function() {
+      console.log('After test')
+    })
+*/

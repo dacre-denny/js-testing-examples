@@ -4,21 +4,29 @@ Mock internal functions
 
 var chai = require("chai");
 var chaiAsPromised = require('chai-as-promised');
+var proxyquire = require('proxyquire');
+var sinon = require("sinon");
 chai.use(chaiAsPromised);
 
 var assert = chai.assert;
 
-// bring in sinon for function mocking
-var sinon = require("sinon");
-
+// bring in our fetch module as usual
 var fetch = require('../src/fetch')
-
-// create a spy that wraps our fetchStock method
-sinon.spy(fetch, 'fetchStock')
-
-var StockService = require('../src/stocks')
+var StockService
 
 describe("StockService", function() {
+
+  beforeEach(function () {
+
+    sinon.spy(fetch, 'fetchStock')
+    StockService = proxyquire('../src/stocks', { './fetch' : fetch })
+  });
+
+  afterEach(function () {
+      
+    fetch.fetchStock.restore()
+  });
+
   describe("#getStockLatestPrice()", function() {
     
     this.timeout(15000)
