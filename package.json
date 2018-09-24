@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -u tdd",
-    "testcomponent": "mocha -w test/helpers/browser.js test/example-*-component.js"
+    "testcomponents": "mocha -w test/helpers/browser.js test/example-*-component.js"
   },
   "license": "MIT",
   "dependencies": {
