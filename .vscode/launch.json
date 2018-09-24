@@ -15,7 +15,7 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceFolder}/test/example-1-simple.js"
+                "${workspaceFolder}/test/example-5-spy.js"
             ],
             "internalConsoleOptions": "openOnSessionStart"
         },

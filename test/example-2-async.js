@@ -11,6 +11,9 @@ var StockService = require('../src/stocks')
 describe("StockService", function() {
   describe("#getStockLatestPrice()", function() {
 
+    // useful if tests takes longer to complete
+    this.timeout(15000)
+
     // Using promises and done() callback
     it("should return a number", function(done) {
       

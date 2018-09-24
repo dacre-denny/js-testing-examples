@@ -22,6 +22,9 @@ describe("StockService", function() {
       
       // use isRejected, part of chai-as-promised
       await assert.isRejected(StockService.getStockLatestPrice())
+      
+      // other options, like matching particular error messages
+      await assert.isRejected(StockService.getStockLatestPrice(), /Unknown symbol/)
     });
   });
 });

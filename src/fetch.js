@@ -1,10 +1,10 @@
 const https = require('https');
 
-async function fetchJSON(url) {
+async function fetchStock(url) {
 
     return new Promise((resolve, reject) => {
 
-        https.get(url, (res) => {
+        https.get(`https://api.iextrading.com/1.0/stock/${ url }/batch?types=quote&range=1m&last=10`, (res) => {
             
             var body = '';
 
@@ -28,8 +28,6 @@ async function fetchJSON(url) {
     })
 }
 
-var API = {
-    fetchJSON
+module.exports = {
+    fetchStock
 }
-
-module.exports = API
